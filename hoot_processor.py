@@ -71,12 +71,13 @@ def convert_hoot_to_wpilog(hoot_dir, owlet_path=None, output_dir=None):
             # Determine output file name (same basename but .wpilog extension)
             output_file = output_path / f"{hoot_file.stem}.wpilog"
 
-            # Build the owlet command
+            # Build the owlet command using the correct syntax
+            # ./owlet-25.2.0-windowsx86-64.exe --format=wpilog ./hoot/file.hoot output.wpilog
             cmd = [
                 str(owlet_exe),
-                f"--format=wpilog",
-                f"--output={output_file}",
-                str(hoot_file)
+                "--format=wpilog",
+                str(hoot_file),
+                str(output_file)
             ]
 
             # Execute the command
